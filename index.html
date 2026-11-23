@@ -83,7 +83,8 @@ mark { background:linear-gradient(transparent 58%, #f9dc8b 58%); color:inherit; 
 .order li::before { content:counter(o); flex:0 0 36px; height:36px; border-radius:10px; background:var(--navy); color:var(--gold); font-weight:900; display:flex; align-items:center; justify-content:center; }
 .order b { font-weight:900; }
 .dark .miss { background:var(--navy2); border-color:#27405d; }
-.dark .miss .q { color:#fff; font-size:19px; }
+.dark .miss .q { color:#fff; font-size:22px; line-height:1.32; font-weight:900; }
+.dark .miss .q span { font-size:26px; }
 .dark .miss .a { color:#c9d5e3; }
 .tagline { font-size:12.5px; font-weight:800; color:var(--gold); letter-spacing:.04em; margin-bottom:5px; }
 .dark .up { color:#ff6a62; } .dark .dn { color:#6aa5ff; }
@@ -101,7 +102,8 @@ h2.mt { margin-top:38px; }
 .apply { padding-top:8px; border-top:0; }
 .box h2 { margin-bottom:10px; }
 
-.tail { height: 96px; background:#fff; }
+footer { background:#fff; padding: 22px 0 104px; font-size:12px; color:#7a8693; line-height:1.6; text-align:center; }
+footer b { color:#3c4854; font-size:13px; }
 
 /* 아래 고정 버튼 */
 .sticky { position:fixed; left:0; right:0; bottom:0; padding:10px 16px calc(10px + env(safe-area-inset-bottom)); background:rgba(15,27,42,.94); backdrop-filter:blur(8px); transform:translateY(110%); transition:transform .25s; z-index:10; }
@@ -146,29 +148,29 @@ h2.mt { margin-top:38px; }
 
 <section class="dark">
   <div class="wrap">
-    <h2>코스피가 5% 넘게 빠진 날,<br>노트에는 <b class="g">이렇게</b> 적혔습니다</h2>
-    <p class="h2sub">2026년 11월 20일자 실제 내용입니다</p>
+    <h2>지난주 재료는<br><b class="g">이렇게</b> 움직였습니다</h2>
+    <p class="h2sub">2026년 11월 18~20일 실제 시세입니다</p>
 
     <div class="miss">
-      <div class="tagline">3번 · 끝나는 날짜</div>
-      <div class="q">호재가 확정된 날 <span class="dn">-13.09%</span></div>
-      <div class="a">SK텔레콤. 지분 가치 5조 원이 숫자로 찍힌 바로 그날 급락했습니다. 기대로 오른 종목은 그 일이 실제로 일어나는 날 끝납니다.</div>
+      <div class="tagline">1번 · 대장</div>
+      <div class="q">엔비디아 한마디에<br>삼성전기 이틀 <span class="up">+18%</span></div>
+      <div class="a">엔비디아가 실적 발표에서 삼성전기와 맺은 새 계약을 언급했습니다. 다음 날부터 이틀 동안 74만 8천 원이 88만 3천 원이 됐습니다.</div>
     </div>
     <div class="miss">
       <div class="tagline">2번 · 후발주자</div>
-      <div class="q">대장 다음에 번진 종목 <span class="up">+29.95%</span></div>
-      <div class="a">급락장에서 버틴 테마는 하나였습니다. 대장 노랑풍선이 먼저 갔고, 다음 날 화장품으로 번졌습니다. 삐아 +29.95%, 마녀공장 +18.66%.</div>
+      <div class="q">대장 노랑풍선 다음 날<br>삐아 <span class="up">+29.95%</span></div>
+      <div class="a">한·중 FTA 재료. 대장이 먼저 상한가를 갔고, 다음 날 화장품으로 번졌습니다. 마녀공장도 +18.66%.</div>
     </div>
     <div class="miss">
-      <div class="tagline">기사 제목에 없는 한 줄</div>
-      <div class="q">우선주 <span class="up">상한가</span>, 그런데 의결권이 없습니다</div>
-      <div class="a">한진칼 경영권 분쟁. 우선주가 +29.99% 올랐지만 표 대결과는 관계없는 주식입니다.</div>
+      <div class="tagline">3번 · 끝나는 날짜</div>
+      <div class="q">호재가 확정된 날<br>SK텔레콤 <span class="dn">-13.09%</span></div>
+      <div class="a">지분 가치 5조 원이 숫자로 찍힌 바로 그날 급락했습니다. 기대로 오른 종목은 그 일이 실제로 일어나는 날 끝납니다.</div>
     </div>
 
     <div class="stat">
       <div><b>9쪽</b>분량</div><div><b>5개</b>재료</div><div><b>25개</b>종목</div><div><b>13곳</b>언론사 대조</div>
     </div>
-    <div class="stamp">이날 노트 한 권 기준. 등락률은 11월 20일 종가입니다.</div>
+    <div class="stamp">11월 20일 노트 한 권 기준. 등락률은 종가 기준이고, 삼성전기는 11월 17일 종가 대비 19일 종가입니다.</div>
 
     <h2 class="mt">실제 노트입니다</h2>
     <p class="h2sub">옆으로 넘겨 보세요</p>
@@ -215,13 +217,12 @@ h2.mt { margin-top:38px; }
         <input type="hidden" name="referrer" id="f_referrer"><input type="hidden" name="landing" id="f_landing">
         <button class="btn" type="submit" id="submitBtn">무료로 재료노트 받기</button>
         <div class="msg" id="formMsg" role="status"></div>
-        <div class="agree">남기신 이름과 연락처는 재료노트 안내 연락에만 씁니다.</div>
       </form>
     </div>
   </div>
 </section>
 
-<div class="tail"></div>
+<footer><div class="wrap"><b>(주)버킷홀딩스</b><br>남기신 개인정보는 재료노트 안내에만 사용하며 안전하게 관리합니다.</div></footer>
 
 <div class="sticky" id="sticky"><a class="btn" href="#apply">무료로 재료노트 받기</a></div>
 
