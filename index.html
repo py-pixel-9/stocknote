@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>재료노트 | 매일 저녁 무료</title>
 <meta name="description" content="그날 돈이 몰린 재료, 아직 안 움직인 후발주자, 재료가 끝나는 날짜. 매일 저녁 PDF 한 권으로 정리해 드립니다.">
-<meta property="og:title" content="대장주는 이미 올랐습니다. 다음 종목은요?">
+<meta property="og:title" content="뉴스 보고 샀는데 왜 나만 물릴까요?">
 <meta property="og:description" content="매일 저녁 무료로 받는 재료노트">
 <link rel="preconnect" href="https://cdn.jsdelivr.net">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
@@ -20,9 +20,9 @@ b.g { color: var(--gold); }
 /* 첫 화면 */
 .hero { background: var(--navy); color:#fff; padding: 34px 0 30px; }
 .kicker { display:inline-block; font-size:13px; font-weight:800; letter-spacing:.06em; color:var(--navy); background:var(--gold); padding:5px 11px; border-radius:99px; }
-.hero h1 { font-size: 33px; line-height:1.24; font-weight:900; margin: 16px 0 12px; letter-spacing:-.02em; }
+.hero h1 { font-size: 40px; line-height:1.24; font-weight:900; margin: 16px 0 12px; letter-spacing:-.02em; }
 .hero h1 em { font-style:normal; color:var(--gold); }
-.hero p.lead { font-size:16.5px; color:#d5deea; margin:0 0 22px; }
+.hero p.lead { font-size:16.5px; color:#d5deea; margin:0 0 4px; }
 .hero p.lead b { color:#fff; }
 .btn { display:block; width:100%; border:0; border-radius:14px; background:var(--gold); color:var(--navy); font-family:inherit; font-size:19px; font-weight:900; padding:17px 16px; text-align:center; text-decoration:none; cursor:pointer; }
 .btn small { display:block; font-size:12.5px; font-weight:700; opacity:.75; margin-top:2px; }
@@ -71,6 +71,35 @@ input[aria-invalid=true] { border-color:#ff6b61; }
 .steps b { display:block; font-size:12px; color:var(--sub); font-weight:800; margin-bottom:3px; }
 .plain { font-size:14px; color:#3c4854; margin-top:18px; padding:14px 15px; background:var(--bg); border-radius:12px; }
 
+/* 편지 본문 */
+.letter { background:#fff; }
+.letter p { font-size:17.5px; line-height:1.7; margin:0 0 18px; color:#26323e; }
+.letter p.big { font-size:25px; line-height:1.36; font-weight:900; color:var(--navy); margin:26px 0; letter-spacing:-.02em; }
+mark { background:linear-gradient(transparent 58%, #f9dc8b 58%); color:inherit; padding:0 2px; }
+.say { background:var(--bg); border-left:5px solid var(--navy); border-radius:4px 14px 14px 4px; padding:14px 16px; font-size:18px; font-weight:800; line-height:1.42; margin:0 0 10px; color:var(--navy); }
+.say + p { margin-top:26px; }
+.order { list-style:none; padding:0; margin:0 0 24px; counter-reset:o; }
+.order li { counter-increment:o; display:flex; align-items:center; gap:13px; font-size:19px; padding:14px 0; border-bottom:1px solid var(--line); }
+.order li::before { content:counter(o); flex:0 0 36px; height:36px; border-radius:10px; background:var(--navy); color:var(--gold); font-weight:900; display:flex; align-items:center; justify-content:center; }
+.order b { font-weight:900; }
+.dark .miss { background:var(--navy2); border-color:#27405d; }
+.dark .miss .q { color:#fff; font-size:19px; }
+.dark .miss .a { color:#c9d5e3; }
+.tagline { font-size:12.5px; font-weight:800; color:var(--gold); letter-spacing:.04em; margin-bottom:5px; }
+.dark .up { color:#ff6a62; } .dark .dn { color:#6aa5ff; }
+.dark .stamp { color:#8fa1b6; }
+.stat { display:flex; gap:7px; margin-top:18px; }
+.stat div { flex:1; background:var(--gold); color:var(--navy); border-radius:12px; padding:11px 4px 10px; text-align:center; font-size:11.5px; font-weight:700; line-height:1.3; }
+.stat b { display:block; font-size:21px; font-weight:900; }
+h2.mt { margin-top:38px; }
+.gift { display:flex; gap:13px; align-items:center; background:var(--navy); color:#c9d5e3; border-radius:16px; padding:16px; margin-bottom:10px; font-size:14.5px; }
+.gift > span { font-size:30px; }
+.gift b { display:block; color:#fff; font-size:19px; font-weight:900; margin-bottom:1px; }
+.gift + p { margin-top:22px; }
+.letter p.down { font-size:19px; font-weight:900; color:var(--navy); text-align:center; margin:26px 0 0; }
+.apply { padding-top:8px; border-top:0; }
+.box h2 { margin-bottom:10px; }
+
 footer { padding: 24px 0 110px; font-size:11.5px; color:#7a8693; line-height:1.6; }
 footer b { color:#5a6673; }
 
@@ -85,39 +114,64 @@ footer b { color:#5a6673; }
 
 <header class="hero">
   <div class="wrap">
-    <span class="kicker">재료노트 · 매일 저녁 무료</span>
-    <h1>대장주는 이미<br>올랐습니다.<br><em>다음에 움직일<br>종목은요?</em></h1>
-    <p class="lead">그날 <b>돈이 몰린 재료</b>, 아직 안 움직인 <b>후발주자</b>, 재료가 <b>끝나는 날짜</b>까지. 매일 저녁 PDF 한 권으로 정리해 드립니다.</p>
-    <a class="btn" href="#apply">무료로 재료노트 받기<small>이름·연락처만 남기면 됩니다</small></a>
-    <div class="note">영상 40초에 못 담은 내용이 여기 있습니다</div>
+    <span class="kicker">재료매매 하시는 분들께</span>
+    <h1>뉴스 보고 샀는데<br><em>왜 나만<br>물릴까요?</em></h1>
+    <p class="lead">끝까지 읽으시면 내일 아침 뉴스가 다르게 보입니다.</p>
   </div>
 </header>
 
-<section>
+<section class="letter">
   <div class="wrap">
-    <h2>뉴스는 다 봅니다.<br>놓치는 건 이런 겁니다</h2>
-    <p class="h2sub">11월 20일, 코스피가 5.21% 빠진 날 노트에 실린 내용입니다</p>
+    <p>이런 적 있으실 겁니다.</p>
+    <div class="say">“호재 뉴스 보고 들어갔는데<br>사자마자 빠집니다”</div>
+    <div class="say">“대장주는 이미 상한가라<br>손도 못 댑니다”</div>
+    <div class="say">“관련주 찾다 보면<br>장이 끝나 있습니다”</div>
 
-    <div class="miss">
-      <div class="q">호재가 확정된 날 <span class="dn">-13.09%</span></div>
-      <div class="a">SK텔레콤은 지분 가치 5조 원이 숫자로 찍힌 날 급락했습니다. 기대로 오른 종목은 그 일이 실제로 일어나는 날이 고점이 되기 쉽습니다. 노트에는 <b>재료가 끝나는 날짜</b>를 적습니다.</div>
-    </div>
-    <div class="miss">
-      <div class="q">대장 다음에 번진 종목 <span class="up">+29.95%</span></div>
-      <div class="a">급락장에서 버틴 테마는 한·중 FTA 하나였습니다. 대장 노랑풍선이 먼저 갔고, 다음 날 화장품(삐아 +29.95%, 마녀공장 +18.66%)으로 번졌습니다. 노트에는 <b>대장과 그 뒤 종목</b>을 나눠 적습니다.</div>
-    </div>
-    <div class="miss">
-      <div class="q">우선주 상한가, 그런데 의결권이 없습니다</div>
-      <div class="a">한진칼 경영권 분쟁에서 우선주가 +29.99% 올랐지만 표 대결과는 관계가 없는 주식입니다. 노트에는 <b>기사 제목에 안 나오는 한 줄</b>을 적습니다.</div>
-    </div>
-    <div class="stamp">등락률은 2026년 11월 20일 종가 기준입니다.</div>
+    <p>종목은 매번 달라도 이유는 같습니다.</p>
+    <p class="big"><mark>재료가 움직이는 순서</mark>를<br>모르고 들어가서입니다.</p>
+
+    <p>재료에는 순서가 있습니다.</p>
+    <ol class="order">
+      <li><span><b>대장</b>이 먼저 갑니다</span></li>
+      <li><span><b>후발주자</b>가 따라갑니다</span></li>
+      <li><span><b>정해진 날짜</b>에 끝납니다</span></li>
+    </ol>
+
+    <p>뉴스는 1번만 알려 줍니다.<br>그것도 이미 오른 다음에요.</p>
+    <p>정작 필요한 건 <b>2번과 3번</b>인데,<br>이건 기사 수십 개를 직접 뒤져야 나옵니다.</p>
+    <p>그래서 매일 장이 끝나면<br>그걸 대신 뒤져서 한 권으로 적습니다.</p>
+    <p class="big">이름은 <mark>재료노트</mark>입니다.</p>
   </div>
 </section>
 
 <section class="dark">
   <div class="wrap">
-    <h2>이런 걸 <b class="g">매일</b> 드립니다</h2>
-    <p class="h2sub">실제 발송본입니다. 옆으로 넘겨 보세요</p>
+    <h2>코스피가 5% 넘게 빠진 날,<br>노트에는 <b class="g">이렇게</b> 적혔습니다</h2>
+    <p class="h2sub">2026년 11월 20일자 실제 내용입니다</p>
+
+    <div class="miss">
+      <div class="tagline">3번 · 끝나는 날짜</div>
+      <div class="q">호재가 확정된 날 <span class="dn">-13.09%</span></div>
+      <div class="a">SK텔레콤. 지분 가치 5조 원이 숫자로 찍힌 바로 그날 급락했습니다. 기대로 오른 종목은 그 일이 실제로 일어나는 날 끝납니다.</div>
+    </div>
+    <div class="miss">
+      <div class="tagline">2번 · 후발주자</div>
+      <div class="q">대장 다음에 번진 종목 <span class="up">+29.95%</span></div>
+      <div class="a">급락장에서 버틴 테마는 하나였습니다. 대장 노랑풍선이 먼저 갔고, 다음 날 화장품으로 번졌습니다. 삐아 +29.95%, 마녀공장 +18.66%.</div>
+    </div>
+    <div class="miss">
+      <div class="tagline">기사 제목에 없는 한 줄</div>
+      <div class="q">우선주 <span class="up">상한가</span>, 그런데 의결권이 없습니다</div>
+      <div class="a">한진칼 경영권 분쟁. 우선주가 +29.99% 올랐지만 표 대결과는 관계없는 주식입니다.</div>
+    </div>
+
+    <div class="stat">
+      <div><b>9쪽</b>분량</div><div><b>5개</b>재료</div><div><b>25개</b>종목</div><div><b>13곳</b>언론사 대조</div>
+    </div>
+    <div class="stamp">이날 노트 한 권 기준. 등락률은 11월 20일 종가입니다.</div>
+
+    <h2 class="mt">실제 노트입니다</h2>
+    <p class="h2sub">옆으로 넘겨 보세요</p>
     <div class="pages">
       <img src="assets/note_p1.jpg" alt="재료노트 표지와 오늘의 재료 목차" loading="lazy">
       <img src="assets/note_p4.jpg" alt="재료노트 본문: 재료의 성격과 놓치기 쉬운 것" loading="lazy">
@@ -128,14 +182,14 @@ footer b { color:#5a6673; }
   </div>
 </section>
 
-<section>
+<section class="letter">
   <div class="wrap">
-    <h2>노트 한 권에 들어 있는 것</h2>
-    <p class="h2sub">읽는 데 5분이면 됩니다</p>
-    <div class="in"><div class="n">1</div><div><div class="t">오늘 돈이 몰린 재료 3~5개</div><div class="d">무슨 일이 있었고 어떤 종목이 얼마나 움직였는지, 종가와 거래대금까지 표로 정리합니다.</div></div></div>
-    <div class="in"><div class="n">2</div><div><div class="t">대장 다음에 볼 후발주자</div><div class="d">같은 재료로 묶이는데 아직 덜 움직인 종목을 기사와 공시에서 찾아 적습니다.</div></div></div>
-    <div class="in"><div class="n">3</div><div><div class="t">재료가 끝나는 날짜</div><div class="d">발표일, 상장일, 주총일. 기대가 사라지는 날을 미리 달력에 넣어 둡니다.</div></div></div>
-    <div class="in"><div class="n">4</div><div><div class="t">기사 원문 출처</div><div class="d">모든 숫자에 언론사와 날짜를 붙입니다. 직접 확인하실 수 있습니다.</div></div></div>
+    <p>영상 40초에는 세 종목밖에 못 담습니다.</p>
+    <p class="big">못 담은 나머지를<br><mark>그대로 드립니다.</mark></p>
+    <div class="gift"><span>🎁</span><div><b>재료노트 PDF</b>매일 저녁, 그날 재료와 후발주자</div></div>
+    <div class="gift"><span>🎁</span><div><b>다음 주 재료 달력</b>매주, 재료가 끝나는 날짜</div></div>
+    <p>두 가지 모두 비용을 받지 않습니다.</p>
+    <p class="down">👇 아래에 이름과 연락처만 남겨 주세요</p>
   </div>
 </section>
 
@@ -143,7 +197,6 @@ footer b { color:#5a6673; }
   <div class="wrap">
     <div class="box">
       <h2>오늘 저녁 노트부터<br>받아 보세요</h2>
-      <p class="h2sub">비용은 없습니다. 이름과 연락처만 남기시면 됩니다.</p>
       <form id="leadForm" novalidate>
         <label for="name">이름</label>
         <input type="text" id="name" name="name" autocomplete="name" placeholder="홍길동">
@@ -159,13 +212,6 @@ footer b { color:#5a6673; }
         <div class="agree">남기신 이름과 연락처는 재료노트 안내 연락에만 씁니다.</div>
       </form>
     </div>
-
-    <div class="steps">
-      <div><b>1</b>이름·연락처 남기기</div>
-      <div><b>2</b>문자로 입장 안내</div>
-      <div><b>3</b>매일 저녁 PDF</div>
-    </div>
-    <div class="plain">종목을 찍어 주는 방이 아닙니다. 이미 나온 기사와 공시, 확정된 주가를 정리한 자료이고 사고파는 판단은 직접 하십니다.</div>
   </div>
 </section>
 
@@ -206,7 +252,7 @@ document.getElementById("year").textContent = new Date().getFullYear();
 const sticky = document.getElementById("sticky"), applyEl = document.getElementById("apply");
 function onScroll(){
   const r = applyEl.getBoundingClientRect();
-  sticky.classList.toggle("on", window.scrollY > 420 && r.top > window.innerHeight * 0.75);
+  sticky.classList.toggle("on", window.scrollY > 300 && r.top > window.innerHeight * 0.75);
 }
 window.addEventListener("scroll", onScroll, { passive:true }); onScroll();
 
