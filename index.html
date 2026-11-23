@@ -247,12 +247,16 @@ footer b { color:#3c4854; font-size:13px; }
 
 <script>
 const CONFIG = {
-  ENDPOINT: "",          // 접수용 주소(구글 시트 연결). 비어 있으면 미리보기 상태
+  // 접수 = 구글 양식 "재료노트 신청 접수" → 스프레드시트 "재료노트 신청자"
+  ENDPOINT: "https://docs.google.com/forms/d/e/1FAIpQLSct9CZ0ZmB8wicJ9-WLQHudchPjmU1Rv0_R8Ih3moxRTzAc7Q/formResponse",
+  FIELD: { name: "entry.1017655945", phone: "entry.620623189", market: "entry.795905408", channel: "entry.26667496",
+           source: "entry.206243659", landing: "entry.1937173400", ua: "entry.2085567107" },
+  CHANNEL: { jaeryo: "재료읽는여자", ganryak: "간략한주식" },   // 프로필 링크의 ?ad= 값 → 시트에 적히는 채널 이름
   SITE: "stocknote"
 };
 
-/* 어느 채널에서 왔는지: ?ad=데이터읽는여자&utm_source=youtube */
-(function(){
+/* 어느 채널에서 왔는지: ?ad=jaeryo (재료읽는여자) / ?ad=ganryak (간략한주식) */
+function fillSrc(){
   const keys = ["ad","utm_source"], q = new URLSearchParams(location.search);
   let src = {};
   try { src = JSON.parse(localStorage.getItem("sn_src") || "{}"); } catch(e){}
@@ -263,7 +267,8 @@ const CONFIG = {
   keys.forEach(k => { document.getElementById("f_"+k).value = src[k] || ""; });
   document.getElementById("f_referrer").value = src.referrer || "";
   document.getElementById("f_landing").value = src.landing || location.href;
-})();
+}
+fillSrc();
 
 
 /* 첫 화면을 지나면 아래 버튼 표시, 신청 칸이 보이면 숨김 */
@@ -308,16 +313,17 @@ form.addEventListener("submit", async (ev) => {
   if (form.website.value) return done();
   if (!CONFIG.ENDPOINT) { msg.textContent = "미리보기 화면입니다. 접수 연결 전이라 저장되지 않았습니다."; msg.className = "msg err"; return; }
 
-  const payload = { name, phone, market: markets.join(", "), ad: form.ad.value, utm_source: form.utm_source.value, referrer: form.referrer.value,
-    landing: form.landing.value, page: location.href, ua: navigator.userAgent, ts: new Date().toISOString(), site: CONFIG.SITE };
+  const ad = form.ad.value, F = CONFIG.FIELD, body = new URLSearchParams();
+  let ref = ""; try { ref = form.referrer.value ? new URL(form.referrer.value).hostname : ""; } catch (e) {}
+  body.set(F.name, name); body.set(F.phone, phone); body.set(F.market, markets.join(", "));
+  body.set(F.channel, CONFIG.CHANNEL[ad] || ad || "직접 방문");
+  body.set(F.source, form.utm_source.value || ref || (CONFIG.CHANNEL[ad] ? "youtube" : "직접"));
+  body.set(F.landing, form.landing.value); body.set(F.ua, navigator.userAgent.slice(0, 180));
   btn.disabled = true; btn.textContent = "접수 중…";
   try {
-    const res = await fetch(CONFIG.ENDPOINT, { method:"POST", mode:"cors", credentials:"omit",
-      headers:{ "Content-Type":"text/plain;charset=utf-8" }, body: JSON.stringify(payload) });
-    if (!res.ok) throw new Error("http");
-    const out = await res.json();
-    if (out.ok !== true) throw new Error("not saved");
-    done(); form.reset(); syncBtn();
+    // 구글 양식은 응답 내용을 돌려주지 않는다(no-cors). 전송이 끝나면 접수된 것으로 본다.
+    await fetch(CONFIG.ENDPOINT, { method:"POST", mode:"no-cors", credentials:"omit", body });
+    done(); form.reset(); fillSrc(); syncBtn();
   } catch (e) {
     msg.textContent = "접수에 실패했습니다. 잠시 후 다시 시도해 주세요."; msg.className = "msg err";
   } finally { btn.textContent = "무료로 재료노트 받기"; syncBtn(); }
