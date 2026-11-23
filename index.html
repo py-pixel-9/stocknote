@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>재료노트 | 매일 저녁 무료</title>
+<meta name="description" content="그날 돈이 몰린 재료, 아직 안 움직인 후발주자, 재료가 끝나는 날짜. 매일 저녁 PDF 한 권으로 정리해 드립니다.">
+<meta property="og:title" content="대장주는 이미 올랐습니다. 다음 종목은요?">
+<meta property="og:description" content="매일 저녁 무료로 받는 재료노트">
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<style>
+:root { --navy:#0f1b2a; --navy2:#16263a; --gold:#f2c14e; --ink:#16202b; --sub:#5a6673; --line:#e1e6ec; --up:#e5342f; --dn:#2f6fe0; --bg:#f4f6f9; }
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin:0; font-family:'Pretendard','Malgun Gothic',sans-serif; color:var(--ink); background:var(--bg); word-break:keep-all; line-height:1.55; -webkit-font-smoothing:antialiased; }
+.wrap { max-width: 520px; margin: 0 auto; padding: 0 20px; }
+b.g { color: var(--gold); }
+
+/* 첫 화면 */
+.hero { background: var(--navy); color:#fff; padding: 34px 0 30px; }
+.kicker { display:inline-block; font-size:13px; font-weight:800; letter-spacing:.06em; color:var(--navy); background:var(--gold); padding:5px 11px; border-radius:99px; }
+.hero h1 { font-size: 33px; line-height:1.24; font-weight:900; margin: 16px 0 12px; letter-spacing:-.02em; }
+.hero h1 em { font-style:normal; color:var(--gold); }
+.hero p.lead { font-size:16.5px; color:#d5deea; margin:0 0 22px; }
+.hero p.lead b { color:#fff; }
+.btn { display:block; width:100%; border:0; border-radius:14px; background:var(--gold); color:var(--navy); font-family:inherit; font-size:19px; font-weight:900; padding:17px 16px; text-align:center; text-decoration:none; cursor:pointer; }
+.btn small { display:block; font-size:12.5px; font-weight:700; opacity:.75; margin-top:2px; }
+.hero .note { font-size:13px; color:#9fb0c4; text-align:center; margin-top:10px; }
+
+/* 놓친 것 */
+section { padding: 34px 0; }
+h2 { font-size: 24px; line-height:1.3; font-weight:900; margin:0 0 6px; letter-spacing:-.02em; }
+.h2sub { font-size:14.5px; color:var(--sub); margin:0 0 18px; }
+.miss { background:#fff; border:1px solid var(--line); border-radius:16px; padding:16px 16px 15px; margin-bottom:11px; }
+.miss .q { font-size:17.5px; font-weight:800; line-height:1.38; margin-bottom:6px; }
+.miss .a { font-size:14.5px; color:#3c4854; }
+.up { color:var(--up); font-weight:800; } .dn { color:var(--dn); font-weight:800; }
+.stamp { font-size:12.5px; color:var(--sub); margin-top:12px; }
+
+/* 미리보기 */
+.dark { background: var(--navy); color:#fff; }
+.dark .h2sub { color:#a9b8ca; }
+.pages { display:flex; gap:12px; overflow-x:auto; padding: 4px 20px 14px; margin: 0 -20px; scroll-snap-type:x mandatory; }
+.pages img { flex:0 0 72%; max-width:330px; border-radius:10px; scroll-snap-align:center; box-shadow:0 10px 30px rgba(0,0,0,.45); background:#fff; }
+.swipe { text-align:center; font-size:12.5px; color:#8fa1b6; }
+
+/* 들어 있는 것 */
+.in { display:flex; gap:13px; align-items:flex-start; padding:15px 0; border-bottom:1px solid var(--line); }
+.in:last-child { border-bottom:0; }
+.in .n { flex:0 0 34px; height:34px; border-radius:10px; background:var(--navy); color:var(--gold); font-weight:900; font-size:16px; display:flex; align-items:center; justify-content:center; }
+.in .t { font-size:17px; font-weight:800; }
+.in .d { font-size:14.5px; color:#3c4854; margin-top:2px; }
+
+/* 신청 */
+.apply { background:#fff; border-top:1px solid var(--line); }
+.box { background:var(--navy); border-radius:20px; padding:24px 20px 22px; color:#fff; }
+.box h2 { font-size:23px; }
+.box .h2sub { color:#c3cfdd; margin-bottom:16px; }
+label { display:block; font-size:13.5px; font-weight:700; color:#c3cfdd; margin:12px 0 6px; }
+input[type=text], input[type=tel] { width:100%; font-family:inherit; font-size:17px; padding:15px 14px; border-radius:12px; border:2px solid transparent; background:#fff; color:var(--ink); outline:none; }
+input:focus { border-color: var(--gold); }
+input[aria-invalid=true] { border-color:#ff6b61; }
+.err { display:none; color:#ff9a92; font-size:13px; margin-top:5px; } .err.show { display:block; }
+.box .btn { margin-top:18px; }
+.agree { font-size:12px; color:#8fa1b6; margin-top:11px; line-height:1.5; }
+.msg { margin-top:12px; font-size:14.5px; font-weight:700; text-align:center; min-height:1px; }
+.msg.ok { color:var(--gold); } .msg.err { color:#ff9a92; }
+.steps { display:flex; gap:8px; margin-top:18px; }
+.steps div { flex:1; background:var(--bg); border-radius:12px; padding:12px 8px; text-align:center; font-size:13px; color:#3c4854; font-weight:600; }
+.steps b { display:block; font-size:12px; color:var(--sub); font-weight:800; margin-bottom:3px; }
+.plain { font-size:14px; color:#3c4854; margin-top:18px; padding:14px 15px; background:var(--bg); border-radius:12px; }
+
+footer { padding: 24px 0 110px; font-size:11.5px; color:#7a8693; line-height:1.6; }
+footer b { color:#5a6673; }
+
+/* 아래 고정 버튼 */
+.sticky { position:fixed; left:0; right:0; bottom:0; padding:10px 16px calc(10px + env(safe-area-inset-bottom)); background:rgba(15,27,42,.94); backdrop-filter:blur(8px); transform:translateY(110%); transition:transform .25s; z-index:10; }
+.sticky.on { transform:none; }
+.sticky .btn { max-width:520px; margin:0 auto; padding:14px; font-size:17.5px; }
+.hp { position:absolute; left:-9999px; }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="kicker">재료노트 · 매일 저녁 무료</span>
+    <h1>대장주는 이미<br>올랐습니다.<br><em>다음에 움직일<br>종목은요?</em></h1>
+    <p class="lead">그날 <b>돈이 몰린 재료</b>, 아직 안 움직인 <b>후발주자</b>, 재료가 <b>끝나는 날짜</b>까지. 매일 저녁 PDF 한 권으로 정리해 드립니다.</p>
+    <a class="btn" href="#apply">무료로 재료노트 받기<small>이름·연락처만 남기면 됩니다</small></a>
+    <div class="note">영상 40초에 못 담은 내용이 여기 있습니다</div>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <h2>뉴스는 다 봅니다.<br>놓치는 건 이런 겁니다</h2>
+    <p class="h2sub">11월 20일, 코스피가 5.21% 빠진 날 노트에 실린 내용입니다</p>
+
+    <div class="miss">
+      <div class="q">호재가 확정된 날 <span class="dn">-13.09%</span></div>
+      <div class="a">SK텔레콤은 지분 가치 5조 원이 숫자로 찍힌 날 급락했습니다. 기대로 오른 종목은 그 일이 실제로 일어나는 날이 고점이 되기 쉽습니다. 노트에는 <b>재료가 끝나는 날짜</b>를 적습니다.</div>
+    </div>
+    <div class="miss">
+      <div class="q">대장 다음에 번진 종목 <span class="up">+29.95%</span></div>
+      <div class="a">급락장에서 버틴 테마는 한·중 FTA 하나였습니다. 대장 노랑풍선이 먼저 갔고, 다음 날 화장품(삐아 +29.95%, 마녀공장 +18.66%)으로 번졌습니다. 노트에는 <b>대장과 그 뒤 종목</b>을 나눠 적습니다.</div>
+    </div>
+    <div class="miss">
+      <div class="q">우선주 상한가, 그런데 의결권이 없습니다</div>
+      <div class="a">한진칼 경영권 분쟁에서 우선주가 +29.99% 올랐지만 표 대결과는 관계가 없는 주식입니다. 노트에는 <b>기사 제목에 안 나오는 한 줄</b>을 적습니다.</div>
+    </div>
+    <div class="stamp">등락률은 2026년 11월 20일 종가 기준입니다.</div>
+  </div>
+</section>
+
+<section class="dark">
+  <div class="wrap">
+    <h2>이런 걸 <b class="g">매일</b> 드립니다</h2>
+    <p class="h2sub">실제 발송본입니다. 옆으로 넘겨 보세요</p>
+    <div class="pages">
+      <img src="assets/note_p1.jpg" alt="재료노트 표지와 오늘의 재료 목차" loading="lazy">
+      <img src="assets/note_p4.jpg" alt="재료노트 본문: 재료의 성격과 놓치기 쉬운 것" loading="lazy">
+      <img src="assets/note_p5.jpg" alt="재료노트 본문: 대장과 번진 종목 표" loading="lazy">
+      <img src="assets/note_p9.jpg" alt="재료노트 마지막 장: 다음 주 재료 달력" loading="lazy">
+    </div>
+    <div class="swipe">← 넘겨 보기 →</div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>노트 한 권에 들어 있는 것</h2>
+    <p class="h2sub">읽는 데 5분이면 됩니다</p>
+    <div class="in"><div class="n">1</div><div><div class="t">오늘 돈이 몰린 재료 3~5개</div><div class="d">무슨 일이 있었고 어떤 종목이 얼마나 움직였는지, 종가와 거래대금까지 표로 정리합니다.</div></div></div>
+    <div class="in"><div class="n">2</div><div><div class="t">대장 다음에 볼 후발주자</div><div class="d">같은 재료로 묶이는데 아직 덜 움직인 종목을 기사와 공시에서 찾아 적습니다.</div></div></div>
+    <div class="in"><div class="n">3</div><div><div class="t">재료가 끝나는 날짜</div><div class="d">발표일, 상장일, 주총일. 기대가 사라지는 날을 미리 달력에 넣어 둡니다.</div></div></div>
+    <div class="in"><div class="n">4</div><div><div class="t">기사 원문 출처</div><div class="d">모든 숫자에 언론사와 날짜를 붙입니다. 직접 확인하실 수 있습니다.</div></div></div>
+  </div>
+</section>
+
+<section class="apply" id="apply">
+  <div class="wrap">
+    <div class="box">
+      <h2>오늘 저녁 노트부터<br>받아 보세요</h2>
+      <p class="h2sub">비용은 없습니다. 이름과 연락처만 남기시면 됩니다.</p>
+      <form id="leadForm" novalidate>
+        <label for="name">이름</label>
+        <input type="text" id="name" name="name" autocomplete="name" placeholder="홍길동">
+        <div class="err" id="nameErr">이름을 입력해 주세요</div>
+        <label for="phone">연락처</label>
+        <input type="tel" id="phone" name="phone" inputmode="numeric" autocomplete="tel" placeholder="010-0000-0000">
+        <div class="err" id="phoneErr">010으로 시작하는 번호 11자리를 입력해 주세요</div>
+        <input class="hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <input type="hidden" name="ad" id="f_ad"><input type="hidden" name="utm_source" id="f_utm_source">
+        <input type="hidden" name="referrer" id="f_referrer"><input type="hidden" name="landing" id="f_landing">
+        <button class="btn" type="submit" id="submitBtn">무료로 재료노트 받기</button>
+        <div class="msg" id="formMsg" role="status"></div>
+        <div class="agree">남기신 이름과 연락처는 재료노트 안내 연락에만 씁니다.</div>
+      </form>
+    </div>
+
+    <div class="steps">
+      <div><b>1</b>이름·연락처 남기기</div>
+      <div><b>2</b>문자로 입장 안내</div>
+      <div><b>3</b>매일 저녁 PDF</div>
+    </div>
+    <div class="plain">종목을 찍어 주는 방이 아닙니다. 이미 나온 기사와 공시, 확정된 주가를 정리한 자료이고 사고파는 판단은 직접 하십니다.</div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <b>버킷홀딩스</b> · 대표 김보현 · 사업자등록번호 445-18-01605<br>
+    유사투자자문업 신고 (2023.03.27 ~ 2028.03.26) · 경기도 성남시 분당구 정자일로156번길 11<br><br>
+    재료노트는 공개된 기사·공시와 시세를 정리한 자료이며 특정 종목의 매수·매도를 권유하지 않습니다. 투자에는 원금 손실 위험이 있고 수익을 보장하지 않습니다. 투자 판단과 책임은 본인에게 있습니다.<br>
+    © <span id="year"></span> 버킷홀딩스
+  </div>
+</footer>
+
+<div class="sticky" id="sticky"><a class="btn" href="#apply">무료로 재료노트 받기</a></div>
+
+<script>
+const CONFIG = {
+  ENDPOINT: "",          // 접수용 주소(구글 시트 연결). 비어 있으면 미리보기 상태
+  SITE: "stocknote"
+};
+
+/* 어느 채널에서 왔는지: ?ad=데이터읽는여자&utm_source=youtube */
+(function(){
+  const keys = ["ad","utm_source"], q = new URLSearchParams(location.search);
+  let src = {};
+  try { src = JSON.parse(localStorage.getItem("sn_src") || "{}"); } catch(e){}
+  let fresh = false;
+  keys.forEach(k => { const v = q.get(k); if (v) { src[k] = v; fresh = true; } });
+  if (fresh || !src.landing) { src.landing = location.href; src.referrer = document.referrer || ""; }
+  try { localStorage.setItem("sn_src", JSON.stringify(src)); } catch(e){}
+  keys.forEach(k => { document.getElementById("f_"+k).value = src[k] || ""; });
+  document.getElementById("f_referrer").value = src.referrer || "";
+  document.getElementById("f_landing").value = src.landing || location.href;
+})();
+
+document.getElementById("year").textContent = new Date().getFullYear();
+
+/* 첫 화면을 지나면 아래 버튼 표시, 신청 칸이 보이면 숨김 */
+const sticky = document.getElementById("sticky"), applyEl = document.getElementById("apply");
+function onScroll(){
+  const r = applyEl.getBoundingClientRect();
+  sticky.classList.toggle("on", window.scrollY > 420 && r.top > window.innerHeight * 0.75);
+}
+window.addEventListener("scroll", onScroll, { passive:true }); onScroll();
+
+const phoneEl = document.getElementById("phone");
+phoneEl.addEventListener("input", () => {
+  const d = phoneEl.value.replace(/\D/g, "").slice(0, 11);
+  phoneEl.value = d.length > 7 ? d.slice(0,3)+"-"+d.slice(3,7)+"-"+d.slice(7) : d.length > 3 ? d.slice(0,3)+"-"+d.slice(3) : d;
+});
+
+const form = document.getElementById("leadForm"), msg = document.getElementById("formMsg"), btn = document.getElementById("submitBtn");
+function setErr(el, id, on){ el.setAttribute("aria-invalid", on ? "true" : "false"); document.getElementById(id).classList.toggle("show", !!on); }
+
+form.addEventListener("submit", async (ev) => {
+  ev.preventDefault();
+  if (btn.disabled) return;
+  msg.className = "msg"; msg.textContent = "";
+  const name = form.name.value.trim(), phone = phoneEl.value.trim();
+  const badName = name.length < 2, badPhone = !/^010-\d{4}-\d{4}$/.test(phone);
+  setErr(form.name, "nameErr", badName); setErr(phoneEl, "phoneErr", badPhone);
+  if (badName || badPhone) { (badName ? form.name : phoneEl).focus(); return; }
+  if (form.website.value) return done();
+  if (!CONFIG.ENDPOINT) { msg.textContent = "미리보기 화면입니다. 접수 연결 전이라 저장되지 않았습니다."; msg.className = "msg err"; return; }
+
+  const payload = { name, phone, ad: form.ad.value, utm_source: form.utm_source.value, referrer: form.referrer.value,
+    landing: form.landing.value, page: location.href, ua: navigator.userAgent, ts: new Date().toISOString(), site: CONFIG.SITE };
+  btn.disabled = true; btn.textContent = "접수 중…";
+  try {
+    const res = await fetch(CONFIG.ENDPOINT, { method:"POST", mode:"cors", credentials:"omit",
+      headers:{ "Content-Type":"text/plain;charset=utf-8" }, body: JSON.stringify(payload) });
+    if (!res.ok) throw new Error("http");
+    const out = await res.json();
+    if (out.ok !== true) throw new Error("not saved");
+    done(); form.reset();
+  } catch (e) {
+    msg.textContent = "접수에 실패했습니다. 잠시 후 다시 시도해 주세요."; msg.className = "msg err";
+  } finally { btn.disabled = false; btn.textContent = "무료로 재료노트 받기"; }
+});
+function done(){ msg.textContent = "신청됐습니다. 문자로 입장 안내를 보내 드립니다."; msg.className = "msg ok"; }
+</script>
+</body>
+</html>
