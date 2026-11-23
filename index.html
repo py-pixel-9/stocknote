@@ -96,12 +96,12 @@ h2.mt { margin-top:38px; }
 .gift > span { font-size:30px; }
 .gift b { display:block; color:#fff; font-size:19px; font-weight:900; margin-bottom:1px; }
 .gift + p { margin-top:22px; }
+.sep { border:0; border-top:1px solid var(--line); margin:30px 0; }
 .letter p.down { font-size:19px; font-weight:900; color:var(--navy); text-align:center; margin:26px 0 0; }
 .apply { padding-top:8px; border-top:0; }
 .box h2 { margin-bottom:10px; }
 
-footer { padding: 24px 0 110px; font-size:11.5px; color:#7a8693; line-height:1.6; }
-footer b { color:#5a6673; }
+.tail { height: 96px; background:#fff; }
 
 /* 아래 고정 버튼 */
 .sticky { position:fixed; left:0; right:0; bottom:0; padding:10px 16px calc(10px + env(safe-area-inset-bottom)); background:rgba(15,27,42,.94); backdrop-filter:blur(8px); transform:translateY(110%); transition:transform .25s; z-index:10; }
@@ -184,10 +184,16 @@ footer b { color:#5a6673; }
 
 <section class="letter">
   <div class="wrap">
+    <p>그리고 재료 중에는<br><b>날짜가 미리 정해진 것</b>이 있습니다.</p>
+    <p>발사일, 실적 발표일, 상장일, 주총일.</p>
+    <p>뉴스가 뜬 다음에 쫓아가면 늦습니다.</p>
+    <p class="big">관련주를 <mark>미리 파악해서</mark><br>먼저 들어가고 대응한 사람은<br><mark>성과가 갈립니다.</mark></p>
+    <p>그 날짜와 관련주를 미리 적어 둔 것이<br>재료 달력입니다.</p>
+    <hr class="sep">
     <p>영상 40초에는 세 종목밖에 못 담습니다.</p>
     <p class="big">못 담은 나머지를<br><mark>그대로 드립니다.</mark></p>
     <div class="gift"><span>🎁</span><div><b>재료노트 PDF</b>매일 저녁, 그날 재료와 후발주자</div></div>
-    <div class="gift"><span>🎁</span><div><b>다음 주 재료 달력</b>매주, 재료가 끝나는 날짜</div></div>
+    <div class="gift"><span>🎁</span><div><b>다음 주 재료 달력</b>매주, 예정된 재료와 관련주를 미리</div></div>
     <p>두 가지 모두 비용을 받지 않습니다.</p>
     <p class="down">👇 아래에 이름과 연락처만 남겨 주세요</p>
   </div>
@@ -215,14 +221,7 @@ footer b { color:#5a6673; }
   </div>
 </section>
 
-<footer>
-  <div class="wrap">
-    <b>버킷홀딩스</b> · 대표 김보현 · 사업자등록번호 445-18-01605<br>
-    유사투자자문업 신고 (2023.03.27 ~ 2028.03.26) · 경기도 성남시 분당구 정자일로156번길 11<br><br>
-    재료노트는 공개된 기사·공시와 시세를 정리한 자료이며 특정 종목의 매수·매도를 권유하지 않습니다. 투자에는 원금 손실 위험이 있고 수익을 보장하지 않습니다. 투자 판단과 책임은 본인에게 있습니다.<br>
-    © <span id="year"></span> 버킷홀딩스
-  </div>
-</footer>
+<div class="tail"></div>
 
 <div class="sticky" id="sticky"><a class="btn" href="#apply">무료로 재료노트 받기</a></div>
 
@@ -246,7 +245,6 @@ const CONFIG = {
   document.getElementById("f_landing").value = src.landing || location.href;
 })();
 
-document.getElementById("year").textContent = new Date().getFullYear();
 
 /* 첫 화면을 지나면 아래 버튼 표시, 신청 칸이 보이면 숨김 */
 const sticky = document.getElementById("sticky"), applyEl = document.getElementById("apply");
